@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,13 @@
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.147",
     "@types/react-redux": "^7.1.5",
+    "@types/react-test-renderer": "^16.9.1",
+    "enzyme": "^3.10.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-test-renderer": "^16.11.0",
     "rollup": "^1.27.0",
     "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^24.1.0",
