@@ -1,0 +1,1 @@
+export { ReduxModel } from './model';

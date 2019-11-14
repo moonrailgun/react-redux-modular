@@ -1,0 +1,46 @@
+{
+  "name": "react-redux-modular",
+  "version": "1.0.0",
+  "description": "A modular solution for redux",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonrailgun/react-redux-modular.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "react-redux",
+    "react-redux-modular",
+    "modular",
+    "model",
+    "model"
+  ],
+  "author": "moonrailgun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moonrailgun/react-redux-modular/issues"
+  },
+  "homepage": "https://github.com/moonrailgun/react-redux-modular#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "^4.14.147",
+    "@types/react-redux": "^7.1.5",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "rollup": "^1.27.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4"
+  }
+}
