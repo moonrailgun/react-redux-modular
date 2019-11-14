@@ -1,4 +1,9 @@
+import _get from 'lodash/get';
+import _isFunction from 'lodash/isFunction';
+import { Dispatch, Store } from 'redux';
 import { StandardState } from './types';
+
+type ReduxModelDispatchFn = () => void;
 
 /**
  * A base redux model to be extends
@@ -11,10 +16,17 @@ import { StandardState } from './types';
  *    };
  * }
  */
-export abstract class ReduxModel<S extends StandardState = {}> {
+export abstract class ReduxModel<
+  S extends StandardState = { [key: string]: any }
+> {
+  public dispatch?: ReduxModelDispatchFn;
   protected abstract state: S;
 
-  public getState(): S {
+  public getState<K extends keyof S>(key: K): S[K] {
+    return _get(this.state, key);
+  }
+
+  public getAllState(): S {
     return { ...this.state };
   }
 
@@ -23,5 +35,9 @@ export abstract class ReduxModel<S extends StandardState = {}> {
       ...this.state,
       ...state,
     };
+
+    if (_isFunction(this.dispatch)) {
+      this.dispatch();
+    }
   }
 }

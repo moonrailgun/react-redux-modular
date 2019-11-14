@@ -1,12 +1,17 @@
 import { connect as oriConnect } from 'react-redux';
-import { ReduxModel } from './model';
+import { StandardState } from './types';
 
-export type ModelType = ReduxModel;
+export const connect = (...modelNames: string[]) => {
+  // 将模块所有的都列出来
+  const mapState = (state: StandardState) => {
+    return modelNames.reduce(
+      (prevState, name) => ({
+        ...prevState,
+        ...state[name],
+      }),
+      {}
+    );
+  };
 
-// export const connect = (...models: ModelType[]) => {
-//   // TODO
-//   return oriConnect();
-// };
-
-// TODO
-export const connect = oriConnect;
+  return oriConnect(mapState);
+};
