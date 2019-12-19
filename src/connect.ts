@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
-import { StandardState } from './types';
+import { ComponentType, createElement, FC, useContext } from 'react';
+import { modelContext } from './context';
+import { ModelMapType } from './types';
 
 /**
  * connect ReduxModel with modelName
@@ -17,17 +18,20 @@ import { StandardState } from './types';
 // TODO: temporary use any to fix type problem
 export const connectModel = (modelNames: string[]): any => {
   // list all model name
-  const mapState = (state: StandardState) => {
-    return modelNames.reduce(
-      (prevState, name) => ({
-        ...prevState,
-        ...{
-          [name]: state[name],
-        },
-      }),
-      {}
-    );
-  };
 
-  return connect(mapState);
+  return <P>(Component: ComponentType<P>): FC<P> => {
+    return (props) => {
+      const { model } = useContext(modelContext);
+
+      const modelMap: ModelMapType = {};
+      for (const modelName of modelNames) {
+        modelMap[modelName] = model[modelName];
+      }
+
+      return createElement<P>(Component, {
+        ...props,
+        ...modelMap,
+      });
+    };
+  };
 };

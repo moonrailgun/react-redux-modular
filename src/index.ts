@@ -1,2 +1,4 @@
 export { ReduxModel } from './model';
-export { Provider } from './Provider';
+export { ModelProvider } from './Provider';
+export { connectModel } from './connect';
+export { createStore } from './store';

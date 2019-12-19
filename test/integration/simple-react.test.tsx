@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Provider } from '../../src';
-import { connectModel } from '../../src/connect';
+import { connectModel, ModelProvider } from '../../src';
 import { createStore } from '../../src/store';
 import { CounterModel } from '../models/counter';
 
@@ -31,10 +30,12 @@ describe('intergration react component', () => {
       counter: CounterModel,
     });
 
-    renderer.create(
-      <Provider store={store}>
+    const testRenderer = renderer.create(
+      <ModelProvider store={store}>
         <ConnectedCounter />
-      </Provider>
+      </ModelProvider>
     );
+
+    console.log(JSON.stringify(testRenderer.toJSON()));
   });
 });

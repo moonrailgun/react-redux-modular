@@ -1,3 +1,5 @@
+import { ReduxModel } from './model';
+
 export interface FluxStandardAction {
   type: string;
   payload?: {
@@ -9,4 +11,12 @@ export interface FluxStandardAction {
 
 export interface StandardState {
   [key: string]: any;
+}
+
+export interface ModelMapType {
+  [modelName: string]: ReduxModel;
+}
+
+export interface ModelStore {
+  model: ModelMapType;
 }
