@@ -68,7 +68,7 @@ describe('intergration react component', () => {
     });
   });
 
-  test.only('dom should update', () => {
+  test('dom should update', () => {
     const store = createStore({
       counter: CounterModel,
     });

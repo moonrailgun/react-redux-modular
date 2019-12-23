@@ -1,4 +1,13 @@
-import { ComponentType, createElement, FC, useContext } from 'react';
+import _mapValues from 'lodash/mapValues';
+import {
+  ComponentType,
+  createElement,
+  FC,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { modelContext } from './context';
 import { ModelMapType } from './types';
 
@@ -15,23 +24,39 @@ import { ModelMapType } from './types';
  * }
  */
 
-// TODO: temporary use any to fix type problem
 export const connectModel = (modelNames: string[]): any => {
-  // list all model name
-
   return <P>(Component: ComponentType<P>): FC<P> => {
     return (props) => {
-      const { models } = useContext(modelContext);
+      const { models, subscribe } = useContext(modelContext);
+      const modelMap = useMemo(() => {
+        const map: ModelMapType = {};
+        for (const modelName of modelNames) {
+          map[modelName] = models[modelName];
+        }
 
-      const modelMap: ModelMapType = {};
-      for (const modelName of modelNames) {
-        modelMap[modelName] = models[modelName];
-      }
+        return map;
+      }, [models, modelNames]);
+
+      const [modelState, setModelState] = useState(
+        getModelMapAllState(modelMap)
+      );
+      useEffect(() => {
+        subscribe((name) => {
+          if (modelNames.includes(name)) {
+            setModelState(getModelMapAllState(modelMap));
+          }
+        });
+      }, [models, subscribe]);
 
       return createElement<P>(Component, {
         ...props,
+        modelState, // 这个参数起始可以不传，先传下去方便调试
         ...modelMap,
       });
     };
   };
 };
+
+function getModelMapAllState(modelMap: ModelMapType) {
+  return _mapValues(modelMap, (model) => model.getAllState());
+}

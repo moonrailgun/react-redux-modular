@@ -1,14 +1,5 @@
 import { ReduxModel } from './model';
 
-export interface FluxStandardAction {
-  type: string;
-  payload?: {
-    [key: string]: any;
-  };
-  error?: boolean;
-  meta?: any;
-}
-
 export interface StandardState {
   [key: string]: any;
 }
@@ -21,7 +12,13 @@ export interface StoreStateType {
   [modelName: string]: StandardState;
 }
 
+export type StateChangeListenerFn = (
+  modelName: string,
+  allState: StoreStateType
+) => void;
+
 export interface ModelStore {
   models: ModelMapType;
+  subscribe: (listener: StateChangeListenerFn) => void;
   getAllState: () => StoreStateType;
 }

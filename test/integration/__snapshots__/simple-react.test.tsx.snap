@@ -1,19 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`intergration react component render snapshot 1`] = `
-<Component
+<ReactModelProvider
   store={
     Object {
       "getAllState": [Function],
-      "model": Object {
+      "models": Object {
         "counter": CounterModel {
           "decrease": [Function],
+          "dispatch": [Function],
           "increase": [Function],
           "state": Object {
             "num": 0,
           },
         },
       },
+      "subscribe": [Function],
     }
   }
 >
@@ -22,8 +24,16 @@ exports[`intergration react component render snapshot 1`] = `
       counter={
         CounterModel {
           "decrease": [Function],
+          "dispatch": [Function],
           "increase": [Function],
           "state": Object {
+            "num": 0,
+          },
+        }
+      }
+      modelState={
+        Object {
+          "counter": Object {
             "num": 0,
           },
         }
@@ -48,5 +58,5 @@ exports[`intergration react component render snapshot 1`] = `
       </div>
     </Counter>
   </Component>
-</Component>
+</ReactModelProvider>
 `;

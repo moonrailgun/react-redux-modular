@@ -1,6 +1,5 @@
 import _get from 'lodash/get';
 import _isFunction from 'lodash/isFunction';
-import { Dispatch, Store } from 'redux';
 import { StandardState } from './types';
 
 type ReduxModelDispatchFn = () => void;
@@ -37,10 +36,9 @@ export abstract class ReduxModel<
     };
 
     if (_isFunction(this.dispatch)) {
-      console.log('this.state', this.state);
       this.dispatch();
     } else {
-      console.warn('dispatch has not init');
+      console.error('dispatch has not init');
     }
   }
 }
