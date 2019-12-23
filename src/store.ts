@@ -9,12 +9,7 @@ import {
   Store,
 } from 'redux';
 import { ReduxModel } from './model';
-import {
-  FluxStandardAction,
-  ModelMapType,
-  ModelStore,
-  StandardState,
-} from './types';
+import { ModelStore } from './types';
 
 type ReduxModelCls = new () => ReduxModel;
 interface ReduxModelMap {
@@ -22,8 +17,13 @@ interface ReduxModelMap {
 }
 
 export const createStore = (initialModels: ReduxModelMap): ModelStore => {
+  const models = _mapValues(initialModels, (Model) => new Model());
+
   return {
-    model: _mapValues(initialModels, (Model) => new Model()),
+    models,
+    getAllState() {
+      return _mapValues(models, (model) => model.getAllState());
+    },
   };
 };
 

@@ -37,7 +37,10 @@ export abstract class ReduxModel<
     };
 
     if (_isFunction(this.dispatch)) {
+      console.log('this.state', this.state);
       this.dispatch();
+    } else {
+      console.warn('dispatch has not init');
     }
   }
 }

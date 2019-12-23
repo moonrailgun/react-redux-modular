@@ -8,15 +8,15 @@ export class CounterModel extends ReduxModel<State> {
     num: 0,
   };
 
-  public increase() {
+  public increase = () => {
     this.setState({
       num: this.state.num + 1,
     });
-  }
+  };
 
-  public decrease() {
+  public decrease = () => {
     this.setState({
       num: this.state.num - 1,
     });
-  }
+  };
 }

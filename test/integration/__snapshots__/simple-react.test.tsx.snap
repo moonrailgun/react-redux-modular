@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`intergration react component render snapshot 1`] = `
+<Component
+  store={
+    Object {
+      "getAllState": [Function],
+      "model": Object {
+        "counter": CounterModel {
+          "decrease": [Function],
+          "increase": [Function],
+          "state": Object {
+            "num": 0,
+          },
+        },
+      },
+    }
+  }
+>
+  <Component>
+    <Counter
+      counter={
+        CounterModel {
+          "decrease": [Function],
+          "increase": [Function],
+          "state": Object {
+            "num": 0,
+          },
+        }
+      }
+    >
+      <div>
+        <div
+          id="num"
+        >
+          0
+        </div>
+        <button
+          onClick={[Function]}
+        >
+          Increase
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Decrease
+        </button>
+      </div>
+    </Counter>
+  </Component>
+</Component>
+`;

@@ -3,5 +3,6 @@ import { ModelStore } from './types';
 
 // 全局的Context
 export const modelContext = React.createContext<ModelStore>({
-  model: {},
+  models: {},
+  getAllState: () => ({}),
 });

@@ -17,6 +17,11 @@ export interface ModelMapType {
   [modelName: string]: ReduxModel;
 }
 
+export interface StoreStateType {
+  [modelName: string]: StandardState;
+}
+
 export interface ModelStore {
-  model: ModelMapType;
+  models: ModelMapType;
+  getAllState: () => StoreStateType;
 }

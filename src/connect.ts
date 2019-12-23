@@ -21,11 +21,11 @@ export const connectModel = (modelNames: string[]): any => {
 
   return <P>(Component: ComponentType<P>): FC<P> => {
     return (props) => {
-      const { model } = useContext(modelContext);
+      const { models } = useContext(modelContext);
 
       const modelMap: ModelMapType = {};
       for (const modelName of modelNames) {
-        modelMap[modelName] = model[modelName];
+        modelMap[modelName] = models[modelName];
       }
 
       return createElement<P>(Component, {

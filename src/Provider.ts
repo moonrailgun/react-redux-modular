@@ -1,8 +1,9 @@
 import { createElement, FC } from 'react';
 import { modelContext } from './context';
+import { ModelStore } from './types';
 
 interface ProviderProps {
-  store: any;
+  store: ModelStore;
 }
 export const ModelProvider: FC<ProviderProps> = (props) => {
   const Provider = modelContext.Provider;
@@ -15,3 +16,4 @@ export const ModelProvider: FC<ProviderProps> = (props) => {
     props.children
   );
 };
+ModelProvider.displayName = 'ReactModelProvider';
